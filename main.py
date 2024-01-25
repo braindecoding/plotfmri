@@ -1,27 +1,28 @@
-#from helper.plot import plotAll
+import matplotlib.pyplot as plt
 import nibabel as nib
-from nilearn import plotting, image, regions
+from nilearn import plotting
 
-# Config
+# In[]: Config
 target_path="img/"
 folder_path="data/"
 target_extension = '.img'
 new_extension = '.png'
+sbjId = 's1'
 
 
-# Load fMRI data in Analyze format
-img = nib.load(folder_path+'ras1_a0005'+target_extension)
-
-
-# Create a mask defining the ROI (for example, a sphere) based on the ROI HDR file
-sphere_roi = regions.sphere(affine=img.affine)
-
-# Plot the ROI
-plotting.plot_roi(sphere_roi, title='ROI Visualization', display_mode='ortho', cut_coords=[40, 40, 40])
-
-# Show the plot
+# In[]: Load fMRI data in Analyze format
+fmri_image  = nib.load(folder_path+'ras1_c0005'+target_extension)
+fmri_data = fmri_image.get_fdata()
+# In[]: Plot all brain
+plotting.plot_epi(fmri_image)
 plotting.show()
 
+
+# In[]: Load into fMRI Visual Cortex, Plot the loaded image on a glass brain view
+plotting.view_img(fmri_image, threshold=None, cmap='viridis', symmetric_cmap=False,
+                  title='fMRI Data on Glass Brain')
+plt.savefig('output_plot.png')
+plotting.show()
 
 
 #plot all
