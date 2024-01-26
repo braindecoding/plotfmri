@@ -1,8 +1,7 @@
 import matplotlib.pyplot as plt
 import nibabel as nib
 from nilearn import plotting
-import numpy as np
-from helper.plot import plotAllMask
+from helper.plot import plotAllMask,plotAll
 
 
 # In[]: Config roi data
@@ -22,7 +21,7 @@ target_extension = '.img'
 new_extension = '.png'
 sbjId = 's1'
 #plot all
-#plotAll(folder_path,target_extension,target_path,new_extension)
+plotAll(folder_path,target_extension,target_path,new_extension)
 
 # In[]: Load fMRI data in Analyze format
 fmri_image  = nib.load(folder_path+'ras1_c0005'+target_extension)

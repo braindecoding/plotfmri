@@ -17,7 +17,7 @@ def plotAll(folder_path,target_extension,target_path,new_extension):
     for file_name in file_list:
         img = nib.load(folder_path+file_name)
         # Plot the functional MRI data
-        plotting.plot_epi(img)
+        plotting.plot_roi(img,title=file_name)
         new_filename = os.path.splitext(file_name)[0] + new_extension
         plt.savefig(target_path+new_filename)
         plotting.show()
